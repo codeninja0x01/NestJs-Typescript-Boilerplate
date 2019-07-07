@@ -1,0 +1,34 @@
+type Order {
+  id: ID
+  totalAmount: Float
+  shippedOn: DateTime
+  status: Float
+  comments: String
+  authCode: String
+  reference: String
+  createdAt: DateTime
+}
+
+type OrderDetail {
+  id: ID!
+  attribute: String!
+  productName: String!
+  quantity: Int!
+  unitCost: Float!
+  currency: String!
+}
+
+input OrderInput {
+  cartKey: String!
+  taxId: Int!
+  shippingId: Int!
+}
+
+type Mutation {
+  addOrder(orderInput: OrderInput!): Order!
+}
+
+type Query {
+  findOrder(id: Int!): Order!
+  currentOrder: [Order]!
+}

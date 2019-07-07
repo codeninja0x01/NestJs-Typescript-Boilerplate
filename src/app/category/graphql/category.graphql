@@ -1,0 +1,19 @@
+type Category {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+type CategoryPagination {
+  total: Int!
+  currentPage: Int!
+  perPage: Int!
+  row: [Category]!
+}
+
+type Query {
+  getCategories(query: PaginationInput): CategoryPagination!
+  getCategory(id: Int!): Category!
+  getCategoryByProduct(productId: Int!): [Category]!
+  getCategoryByDepartment(departmentId: Int!): [Category]!
+}

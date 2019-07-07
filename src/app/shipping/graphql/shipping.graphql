@@ -1,0 +1,15 @@
+type Shipping {
+  id: ID!
+  type: String!
+  cost: Float!
+}
+
+type ShippingRegion {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  getShippings: [Shipping]!
+  getRegion(id: Int!): Shipping!
+}

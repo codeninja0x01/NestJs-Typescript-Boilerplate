@@ -1,0 +1,59 @@
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+  description: String
+  discountedPrice: Float
+  image1: String
+  image2: String
+  thumbnail: String
+  display: Boolean
+}
+
+type Review {
+  id: ID!
+  review: String!
+  rating: Int!
+  createdAt: DateTime!
+}
+
+input ReviewInput {
+  review: String!
+  rating: Int!
+}
+
+type ProductReview {
+    review: String!
+    rating: Int!
+    userName: String!
+    createdOn: DateTime!
+}
+
+type ProductLocation {
+    categoryId: Int!
+    categoryName: String!
+    departmentId: Int!
+    departmentName: String!
+}
+
+input ProductSearchInput {
+    search: String!
+    descLength: Int
+}
+
+type ProductPagination {
+  total: Int!
+  currentPage: Int!
+  perPage: Int!
+  row: [Product]
+}
+
+type Mutation {
+  addProductReview(reviewInput: ReviewInput!, id: Int!, userId: Int!): [ProductReview!]!
+}
+
+type Query {
+  getProducts(paginationInput: PaginationInput): ProductPagination!
+  getProduct(id: Int!): Product!
+  searchProduct(searchInput: ProductSearchInput!, paginationInput: PaginationInput): ProductPagination!
+}

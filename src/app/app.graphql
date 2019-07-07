@@ -1,0 +1,18 @@
+scalar DateTime
+
+input PaginationInput {
+    offset: String
+    limit: String
+    order: ORDER
+    orderBy: ORDER_BY
+}
+
+enum ORDER {
+  ASC
+  DESC
+}
+
+enum ORDER_BY {
+  id
+  name
+}

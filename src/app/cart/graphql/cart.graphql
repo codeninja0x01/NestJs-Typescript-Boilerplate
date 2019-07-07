@@ -1,0 +1,38 @@
+type Cart {
+  id: ID!
+  cartKey: String!
+  attribute: String!
+  quantity: Float!
+  buyNow: Boolean!
+  createdAt: DateTime!
+}
+
+type CartProduct {
+    cartId: Int!
+    attribute: String!
+    quantity: Int!
+    name: String!
+    image: String!
+    subtotal: Float!
+    price: Float!
+    productId: Int!
+}
+
+input CartInput {
+  attribute: String!
+  cartKey: String!
+  productId: Int!
+  quantity: Int
+}
+
+type Mutation {
+  addCart(cartDto: CartInput!): [CartProduct!]!
+  addQuantity(id: Int!, quantity: Int!): [CartProduct!]!
+  removeCart(cartKey: String!): ID
+  removeProductCart(productId: Int!): ID
+}
+
+type Query {
+  generateCartKey: String!
+  getCartProduct(cartKey: String!): [CartProduct!]!
+}

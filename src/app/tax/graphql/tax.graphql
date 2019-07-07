@@ -1,0 +1,10 @@
+type Tax {
+  id: ID!
+  type: String!
+  percentage: Float!
+}
+
+type Query {
+  getTaxs: [Tax]!
+  getTax(id: Int!): Tax!
+}

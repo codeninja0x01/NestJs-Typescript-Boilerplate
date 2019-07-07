@@ -1,0 +1,2268 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Backend Challenge",
+        "version": "1.0.0",
+        "title": "Turing/E-commerce",
+        "contact": {
+            "email": "codeninja0x01@gmail.com"
+        }
+    },
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "attribute",
+            "description": "Every thing about Attribute"
+        },
+        {
+            "name": "auth",
+            "description": "Every thing about Auth"
+        },
+        {
+            "name": "category",
+            "description": "Every thing about Category"
+        },
+        {
+            "name": "cart",
+            "description": "Every thing about Cart"
+        },
+        {
+            "name": "department",
+            "description": "Every thing about Department"
+        },
+        {
+            "name": "order",
+            "description": "Every thing about Order"
+        },
+        {
+            "name": "product",
+            "description": "Every thing about Product"
+        },
+        {
+            "name": "shipping",
+            "description": "Every thing about Shipping"
+        },
+        {
+            "name": "stripe",
+            "description": "Stripe payment gateway"
+        },
+        {
+            "name": "tax",
+            "description": "Every thing about Tax"
+        },
+        {
+            "name": "user",
+            "description": "Every thing about User"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "securityDefinitions": {
+        "bearer": {
+            "type": "apiKey",
+            "name": "USER-KEY",
+            "in": "header"
+        }
+    },
+    "host": "localhost:3000",
+    "paths": {
+        "/": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/user": {
+            "get": {
+                "summary": "Get logged in user",
+                "description": "Return current user.",
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "user"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            },
+            "post": {
+                "summary": "Update user info",
+                "description": "Update basic user info.",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "dayPhone",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "evePhone",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "mobPhone",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "creditCard",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "user"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/user/address": {
+            "post": {
+                "summary": "Update user address",
+                "description": "Update basic user address.",
+                "parameters": [
+                    {
+                        "name": "address1",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "address2",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "city",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "region",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "country",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "RegionId",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "user"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/attributes": {
+            "get": {
+                "summary": "Get Attributes.",
+                "description": "Return a list of attributes.",
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attribute"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "attribute"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/attributes/{id}": {
+            "get": {
+                "summary": "Get Attribute.",
+                "description": "Return a single attribute.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/Attribute"
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid user input."
+                    }
+                },
+                "tags": [
+                    "attribute"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/attributes/value/{id}": {
+            "get": {
+                "summary": "Get Attribute Value.",
+                "description": "Return a list of attributes value.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AttributeValue"
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid user input."
+                    }
+                },
+                "tags": [
+                    "attribute"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/attributes/product/{productId}": {
+            "get": {
+                "summary": "Get Attribute product.",
+                "description": "Return a list of attribute product.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "productId",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AttributeProduct"
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid user input."
+                    }
+                },
+                "tags": [
+                    "attribute"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts": {
+            "post": {
+                "summary": "Add cart.",
+                "description": "Create cart and return cart product.",
+                "parameters": [
+                    {
+                        "name": "attribute",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "cartKey",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "productId",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    },
+                    {
+                        "name": "quantity",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CartProduct"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/carts/{id}": {
+            "post": {
+                "summary": "Update cart.",
+                "description": "Update cart quantity and return cart product.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    },
+                    {
+                        "name": "quantity",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/CartProduct"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/carts/generate": {
+            "get": {
+                "summary": "Generate cart key.",
+                "description": "Get cart key.",
+                "responses": {
+                    "200": {
+                        "description": "successfully operation."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts/{cartKey}": {
+            "get": {
+                "summary": "Get cart product.",
+                "description": "Return cart product.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "cartKey",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CartProduct"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts/{id}/buynow": {
+            "get": {
+                "summary": "Buy product now.",
+                "description": "Move product to cart.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation."
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts/{id}/buylater": {
+            "get": {
+                "summary": "Buy product later.",
+                "description": "Save product for later.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation."
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts/{cartKey}/saved": {
+            "get": {
+                "summary": "Get saved product.",
+                "description": "Return saved product.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "cartKey",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CartProduct"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts/{id}/total": {
+            "get": {
+                "summary": "Get total cart price.",
+                "description": "Return total cart product price.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation."
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts/empty/{cartKey}": {
+            "delete": {
+                "summary": "Remove cart.",
+                "description": "Delete cart.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "cartKey",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation."
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/carts/product/{id}": {
+            "delete": {
+                "summary": "Remove product.",
+                "description": "Delete product from cart.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation."
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "cart"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/categories": {
+            "get": {
+                "summary": "Get categories.",
+                "description": "Return list of categories.",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    },
+                    {
+                        "$ref": "#/parameters/offsetParam"
+                    },
+                    {
+                        "$ref": "#/parameters/orderParam"
+                    },
+                    {
+                        "$ref": "#/parameters/orderByParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/CategoryPagination"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "category"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "summary": "Get category.",
+                "description": "Return category by Id.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/Category"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "category"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/categories/product/{productId}": {
+            "get": {
+                "summary": "Get category of product.",
+                "description": "Return category by productId.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "productId",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "category"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/categories/department/{departmentId}": {
+            "get": {
+                "summary": "Get category of department.",
+                "description": "Return category by departmentId.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "departmentId",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "category"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/departments": {
+            "get": {
+                "summary": "Get list of departments.",
+                "description": "Return list of departments.",
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Department"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "department"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/departments/{id}": {
+            "get": {
+                "summary": "Get department.",
+                "description": "Return department by Id.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/Department"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "department"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/orders": {
+            "post": {
+                "summary": "Add order.",
+                "description": "Create order.",
+                "parameters": [
+                    {
+                        "name": "cartKey",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "taxId",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    },
+                    {
+                        "name": "shippingId",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "order"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/orders/customer": {
+            "get": {
+                "summary": "Get user order.",
+                "description": "Return user list of order.",
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Order"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "order"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/orders/{id}": {
+            "get": {
+                "summary": "Get order.",
+                "description": "Return order by id.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Order"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "order"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/orders/{id}/detail": {
+            "get": {
+                "summary": "Get order detail.",
+                "description": "Return order detail by orderId.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/OrderDetail"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "order"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/shipping": {
+            "get": {
+                "summary": "Get shipping.",
+                "description": "Return list of shipping.",
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Shipping"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "shipping"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/shipping/region/{id}": {
+            "get": {
+                "summary": "Get shipping region",
+                "description": "Return shipping region.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/Shipping"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "shipping"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/tax": {
+            "get": {
+                "summary": "Get list of taxs",
+                "description": "Return taxs.",
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Tax"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "tax"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/tax/{id}": {
+            "get": {
+                "summary": "Get tax",
+                "description": "Return tax by taxId.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/Tax"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "tax"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/products": {
+            "get": {
+                "summary": "Get list of products.",
+                "description": "Return products.",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    },
+                    {
+                        "$ref": "#/parameters/offsetParam"
+                    },
+                    {
+                        "$ref": "#/parameters/orderParam"
+                    },
+                    {
+                        "$ref": "#/parameters/orderByParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/ProductPagination"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/products/search": {
+            "get": {
+                "summary": "Search products.",
+                "description": "Return products.",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/searchParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    },
+                    {
+                        "$ref": "#/parameters/offsetParam"
+                    },
+                    {
+                        "$ref": "#/parameters/descLengthParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/ProductPagination"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "summary": "Get product.",
+                "description": "Return product by id.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/products/category/{categoryId}": {
+            "get": {
+                "summary": "Get category products.",
+                "description": "Return products by categoryId.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "categoryId",
+                        "required": true,
+                        "in": "path"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    },
+                    {
+                        "$ref": "#/parameters/offsetParam"
+                    },
+                    {
+                        "$ref": "#/parameters/orderParam"
+                    },
+                    {
+                        "$ref": "#/parameters/orderByParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Product"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/products/department/{departmentId}": {
+            "get": {
+                "summary": "Get department products.",
+                "description": "Return products by departmentId.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "departmentId",
+                        "required": true,
+                        "in": "path"
+                    },
+                    {
+                        "type": "number",
+                        "name": "offset",
+                        "required": false,
+                        "in": "query"
+                    },
+                    {
+                        "type": "number",
+                        "name": "limit",
+                        "required": false,
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "orderBy",
+                        "required": false,
+                        "in": "query",
+                        "enum": [
+                            "name",
+                            "id"
+                        ],
+                        "default": "name"
+                    },
+                    {
+                        "type": "string",
+                        "name": "order",
+                        "required": false,
+                        "in": "query",
+                        "enum": [
+                            "ASC",
+                            "DESC"
+                        ],
+                        "default": "ASC"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Product"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/products/{id}/reviews": {
+            "get": {
+                "summary": "Get product reviews.",
+                "description": "Return product reviews.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductReview"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            },
+            "post": {
+                "summary": "Add product review.",
+                "description": "Create product reviews.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    },
+                    {
+                        "name": "review",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "rating",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductReview"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    },
+                    "401": {
+                        "description": "Unauthorized User."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/products/{id}/location": {
+            "get": {
+                "summary": "Get product location.",
+                "description": "Return product location.",
+                "parameters": [
+                    {
+                        "type": "number",
+                        "name": "id",
+                        "required": true,
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductLocation"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "product"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        },
+        "/auth/signin": {
+            "post": {
+                "summary": "Signin user.",
+                "description": "Return auth token and user.",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "type": "string",
+                        "required": true,
+                        "in": "formData"
+                    },
+                    {
+                        "name": "password",
+                        "type": "string",
+                        "required": true,
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/AuthUserDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "auth"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/auth/signup": {
+            "post": {
+                "summary": "Signup user.",
+                "description": "Return auth token and user.",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "type": "string",
+                        "required": true,
+                        "in": "formData"
+                    },
+                    {
+                        "name": "email",
+                        "type": "string",
+                        "required": true,
+                        "in": "formData"
+                    },
+                    {
+                        "name": "password",
+                        "type": "string",
+                        "required": true,
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation.",
+                        "schema": {
+                            "$ref": "#/definitions/AuthUserDto"
+                        }
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "auth"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        },
+        "/stripe/charge": {
+            "post": {
+                "summary": "Stripe payment gateway",
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number"
+                    },
+                    {
+                        "name": "currency",
+                        "required": true,
+                        "in": "formData",
+                        "type": "number",
+                        "enum": [
+                            "USD",
+                            "EUR"
+                        ]
+                    },
+                    {
+                        "name": "description",
+                        "required": true,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "paymentMethodId",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "paymentIntentId",
+                        "required": false,
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "successfully operation."
+                    },
+                    "400": {
+                        "description": "Input data validation failed."
+                    }
+                },
+                "tags": [
+                    "stripe"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ]
+            }
+        }
+    },
+    "parameters": {
+        "limitParam": {
+            "name": "limit",
+            "in": "query",
+            "description": "Limits the number of returned results",
+            "required": false,
+            "type": "integer",
+            "default": 20
+        },
+        "offsetParam": {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset from which start returned results",
+            "required": false,
+            "type": "integer",
+            "default": 1
+        },
+        "orderParam": {
+            "name": "order",
+            "in": "query",
+            "description": "Order ASC or Desc the results",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
+        },
+        "orderByParam": {
+            "name": "orderBy",
+            "in": "query",
+            "description": "OrderBy name or id the results",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "id",
+                "name"
+            ]
+        },
+        "searchParam": {
+            "name": "search",
+            "in": "query",
+            "description": "String to search in the database",
+            "required": true,
+            "type": "string"
+        },
+        "descLengthParam": {
+            "name": "descLength",
+            "in": "query",
+            "description": "Description text length",
+            "required": false,
+            "type": "string",
+            "default": 200
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address1": {
+                    "type": "string"
+                },
+                "address2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "dayPhone": {
+                    "type": "string"
+                },
+                "evePhone": {
+                    "type": "string"
+                },
+                "mobPhone": {
+                    "type": "string"
+                },
+                "creditCard": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "email",
+                "address1",
+                "address2",
+                "city",
+                "region",
+                "postalCode",
+                "country",
+                "dayPhone",
+                "evePhone",
+                "mobPhone",
+                "creditCard"
+            ]
+        },
+        "Attribute": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
+        },
+        "AttributeValue": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
+        },
+        "AttributeProduct": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "value"
+            ]
+        },
+        "CartProduct": {
+            "type": "object",
+            "properties": {
+                "cartId": {
+                    "type": "number"
+                },
+                "attribute": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "subtotal": {
+                    "type": "number"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "productId": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "cartId",
+                "attribute",
+                "quantity",
+                "name",
+                "image",
+                "subtotal",
+                "price",
+                "productId"
+            ]
+        },
+        "Category": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description"
+            ]
+        },
+        "CategoryPagination": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "number"
+                },
+                "currentPage": {
+                    "type": "number"
+                },
+                "perPage": {
+                    "type": "number"
+                },
+                "row": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Category"
+                    }
+                }
+            },
+            "required": [
+                "total",
+                "currentPage",
+                "perPage",
+                "row"
+            ]
+        },
+        "Department": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description"
+            ]
+        },
+        "Order": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "totalAmount": {
+                    "type": "number"
+                },
+                "shippedOn": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "number"
+                },
+                "comments": {
+                    "type": "string"
+                },
+                "authCode": {
+                    "type": "string"
+                },
+                "reference": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "id",
+                "totalAmount",
+                "shippedOn",
+                "status",
+                "comments",
+                "authCode",
+                "reference",
+                "createdAt"
+            ]
+        },
+        "OrderDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "attribute": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "number"
+                },
+                "unitCost": {
+                    "type": "number"
+                },
+                "currency": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "attribute",
+                "productName",
+                "quantity",
+                "unitCost",
+                "currency"
+            ]
+        },
+        "Shipping": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "cost": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "cost"
+            ]
+        },
+        "Tax": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "percentage": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "percentage"
+            ]
+        },
+        "Product": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "discountedPrice": {
+                    "type": "number"
+                },
+                "image1": {
+                    "type": "string"
+                },
+                "image2": {
+                    "type": "string"
+                },
+                "thumbnail": {
+                    "type": "string"
+                },
+                "display": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description",
+                "price",
+                "discountedPrice",
+                "image1",
+                "image2",
+                "thumbnail",
+                "display"
+            ]
+        },
+        "ProductPagination": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "number"
+                },
+                "currentPage": {
+                    "type": "number"
+                },
+                "perPage": {
+                    "type": "number"
+                },
+                "row": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Product"
+                    }
+                }
+            },
+            "required": [
+                "total",
+                "currentPage",
+                "perPage",
+                "row"
+            ]
+        },
+        "ProductReview": {
+            "type": "object",
+            "properties": {
+                "review": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "createdOn": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "review",
+                "rating",
+                "userName",
+                "createdOn"
+            ]
+        },
+        "ProductLocation": {
+            "type": "object",
+            "properties": {
+                "categoryId": {
+                    "type": "number"
+                },
+                "categoryName": {
+                    "type": "string"
+                },
+                "departmentId": {
+                    "type": "number"
+                },
+                "departmentName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "categoryId",
+                "categoryName",
+                "departmentId",
+                "departmentName"
+            ]
+        },
+        "AuthUserDto": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "user": {
+                    "$ref": "#/definitions/User"
+                }
+            },
+            "required": [
+                "token",
+                "user"
+            ]
+        }
+    }
+}

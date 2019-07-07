@@ -1,0 +1,44 @@
+type User {
+  id: ID
+  name: String
+  email: String
+  address1: String
+  address2: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  dayPhone: String
+  evePhone: String
+  mobPhone: String
+  creditCard: String
+}
+
+input UserAddressInput {
+  address1: String!
+  address2: String!
+  city: String!
+  region: String!
+  postalCode: String!
+  country: String!
+  RegionId: Int!
+}
+
+input UserUpdateInput {
+  name: String!
+  password: String!
+  dayPhone: String!
+  evePhone: String!
+  mobPhone: String!
+  creditCard: String!
+}
+
+type Query {
+  getUser: User!
+  getTax(id: Int!): Tax!
+}
+
+type Mutation {
+    updateAddress(addressInput: UserAddressInput!): User!
+    updateUser(updateInput: UserUpdateInput!): User!
+}

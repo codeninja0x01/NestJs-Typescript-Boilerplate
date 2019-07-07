@@ -1,0 +1,21 @@
+type Attribute {
+  id: ID!
+  name: String!
+  values: [AttributeValue]
+}
+
+type AttributeValue {
+  id: ID!
+  name: String!
+}
+
+type AttributeProduct {
+    id: ID!
+    name: String!
+    value: String!
+}
+
+type Query {
+  getAttributes: [Attribute]!
+  getAttribute(id: Int!): Attribute
+}
