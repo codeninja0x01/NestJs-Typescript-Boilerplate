@@ -23,13 +23,14 @@ describe('Users', () => {
         await app.init();
     });
 
-    it(`/GET user`, () => {
-        return request(app.getHttpServer())
+    it(`/GET user`, (done) => {
+        request(app.getHttpServer())
             .get('user')
             .expect(200)
             .expect({
                 data: userService.getUser(),
-            });
+            })
+            .end(() => done());
     });
 
     afterAll(async () => {
