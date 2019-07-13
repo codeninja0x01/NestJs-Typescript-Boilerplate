@@ -64,11 +64,11 @@ const bootstrap = async () => {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalPipes(new ValidationPipe());
-  let port = process.env.PORT ;
-  if (port === null || port === '') {
-    port = APP_CONFIG.get('APP_PORT');
-  }
-  await app.listen(port);
+  // let port = process.env.PORT ;
+  // if (port === null || port === '') {
+  //   port = APP_CONFIG.get('APP_PORT');
+  // }
+  await app.listen(process.env.PORT);
 };
 
 bootstrap().then(_ => {
