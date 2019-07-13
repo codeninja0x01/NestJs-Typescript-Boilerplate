@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { EmailService } from '../helper/helper.service.email';
 // import { EmailService } from '../email/email.service';
 import { UserAddressDto } from './dto/user-address.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
@@ -12,17 +13,17 @@ import { User } from './user.model';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>
-    // private readonly emailService: EmailService
+    private readonly userRepository: Repository<User>,
+    private readonly emailService: EmailService
   ) { }
 
   public async save(user: User): Promise<User> {
-    // this.emailService.sendMail({
-    //   html: '',
-    //   subject: '',
-    //   text: '',
-    //   to: '',
-    // });
+    this.emailService.sendMail({
+      html: '<h>Welcome to turing e-commerce</h>',
+      subject: 'Welcome',
+      text: 'Welcome to turing e-commerce',
+      to: user.email,
+    });
     return await this.userRepository.save(user);
   }
 

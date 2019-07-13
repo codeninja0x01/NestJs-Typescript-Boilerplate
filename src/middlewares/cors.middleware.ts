@@ -15,11 +15,13 @@ export class CorsMiddleware implements NestMiddleware {
     const getMethod = method => RequestMethod[method];
     const origins = request.headers.origin;
     const origin = (Array.isArray(origins) ? origins[0] : origins) || '';
-    const allowedOrigins = [...this.config.get('ALLOWED_ORIGINS')];
+    const allowedOrigins = [this.config.get('ALLOWED_ORIGINS')];
     const allowedMethods = [RequestMethod.GET, RequestMethod.HEAD, RequestMethod.PUT, RequestMethod.PATCH, RequestMethod.POST, RequestMethod.DELETE];
     const allowedHeaders = ['Authorization', 'Origin', 'No-Cache', 'X-Requested-With', 'If-Modified-Since', 'Pragma', 'Last-Modified', 'Cache-Control',
     'Expires', 'Content-Type', 'X-E4M-With'];
 
+    console.log(allowedOrigins);
+    console.log(origins);
     // Allow Origin
     if (!origin || allowedOrigins.includes(origin) || isProdMode) {
       response.setHeader('Access-Control-Allow-Origin', origin || '*');

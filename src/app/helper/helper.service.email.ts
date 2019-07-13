@@ -29,6 +29,9 @@ export class EmailService {
         console.warn('Mail failed to send', error);
       } else {
         console.log('Mail sent successfully', info.messageId, info.response);
+        if (!isProdMode) {
+          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        }
       }
     });
   }

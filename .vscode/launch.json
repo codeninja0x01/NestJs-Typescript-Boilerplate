@@ -7,6 +7,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "E2E Test Debug",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "start",
+                "test.e2e"
+            ],
+            "timeout": 60000
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Debug",
             "program": "${workspaceRoot}/dist/main.js",
             "smartStep": true,

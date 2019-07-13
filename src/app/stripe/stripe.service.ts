@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { EmailService } from '../helper/helper.service.email';
 import { Order } from '../order/order.model';
 import { StripeCreateDto } from './dto/stripe-create.dto';
 
@@ -14,13 +15,14 @@ export class StripeService {
 
     constructor(
         @InjectRepository(Order)
-        private readonly orderRepository: Repository<Order>
+        private readonly orderRepository: Repository<Order>,
+        private readonly emailService: EmailService
     ) {}
 
     public async charge(stripeInput: StripeCreateDto): Promise<any> {
         let intent;
 
-        const order = await this.orderRepository.findOne(stripeInput.orderId);
+        const order = await this.orderRepository.findOne(stripeInput.orderId, {relations: ['user']});
 
         if (stripeInput.paymentMethodId !== undefined) {
             intent = await stripe.paymentIntents.create({
@@ -51,6 +53,12 @@ export class StripeService {
           // The payment didn’t need any additional actions and completed!
           // Handle post-payment fulfillment
           this.orderRepository.update({id: order.id}, {status: 1, authCode: intent.id, comments: intent.description});
+          this.emailService.sendMail({
+            html: '<h>Your order is successfully created </h>',
+            subject: 'Order Detail',
+            text: 'Your order is successfully created ',
+            to: order.user.email,
+          });
           return {
             success: true,
           };
