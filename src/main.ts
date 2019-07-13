@@ -64,7 +64,8 @@ const bootstrap = async () => {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalPipes(new ValidationPipe());
-  await app.listen(process.env.PORT || APP_CONFIG.get('APP_PORT'));
+  const port = process.env.PORT || APP_CONFIG.get('APP_PORT');
+  await app.listen(port);
 };
 
 bootstrap().then(_ => {
