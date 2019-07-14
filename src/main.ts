@@ -22,6 +22,11 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, isProdMode ? { logger: false } : undefined);
   APP_CONFIG = app.get('ConfigService');
 
+  let port = process.env.PORT;
+  if (port === null || port === '') {
+    port = APP_CONFIG.get('APP_PORT');
+  }
+
   if (APP_CONFIG.get('SWAGGER_ENABLED') === 'true') {
     const swaggerFile = require(path.join(__dirname, '..', APP_CONFIG.get('SWAGGER_FILE')));
 
@@ -36,7 +41,7 @@ const bootstrap = async () => {
     };
 
     swaggerFile.schemes = [`${APP_CONFIG.get('APP_SCHEMA')}`];
-    swaggerFile.host = `${APP_CONFIG.get('APP_HOST')}:${APP_CONFIG.get('APP_PORT')}`;
+    swaggerFile.host = `${APP_CONFIG.get('APP_HOST')}:${port}`;
     swaggerFile.basePath = `${APP_CONFIG.get('APP_ROUTE_PREFIX')}`;
 
     app.use(
@@ -64,11 +69,8 @@ const bootstrap = async () => {
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalPipes(new ValidationPipe());
-  // let port = process.env.PORT ;
-  // if (port === null || port === '') {
-  //   port = APP_CONFIG.get('APP_PORT');
-  // }
-  await app.listen(process.env.PORT);
+
+  await app.listen(port);
 };
 
 bootstrap().then(_ => {
