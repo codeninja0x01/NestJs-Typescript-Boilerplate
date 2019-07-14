@@ -11,7 +11,7 @@ module.exports = {
          * Starts the builded app from the dist directory.
          */
         start: {
-            script: 'cross-env NODE_ENV=production node dist/main.js',
+            script: 'cross-env NODE_ENV=development node dist/main.js',
             description: 'Starts the builded app',
         },
         /**
