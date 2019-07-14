@@ -6,16 +6,16 @@
   <b>Turing Backend Challenge written in TypeScript.</b></br>
 
   <p align="center">
-  <a href="https://david-dm.org/w3tecch/express-typescript-boilerplate">
-    <img src="https://david-dm.org/w3tecch/express-typescript-boilerplate/status.svg?style=flat" alt="dependency" />
+  <a href="https://david-dm.org/codeninja0x01/Turing-ecommerce">
+    <img src="https://david-dm.org/codeninja0x01/Turing-ecommerce/status.svg?style=flat" alt="dependency" />
   </a>
   <a href="https://travis-ci.org/codeninja0x01/Turing-ecommerce">
     <img src="https://travis-ci.org/codeninja0x01/Turing-ecommerce.svg?branch=master" alt="travis" />
   </a>
-  <a href="https://ci.appveyor.com/project/dweber019/express-typescript-boilerplate/branch/master">
-    <img src="https://ci.appveyor.com/api/projects/status/f8e7jdm8v58hcwpq/branch/master?svg=true&passingText=Windows%20passing&pendingText=Windows%20pending&failingText=Windows%20failing" alt="appveyor" />
+  <a href="https://ci.appveyor.com/project/codeninja0x01/turing-ecommerce">
+    <img src="https://ci.appveyor.com/api/projects/status/ees62bin6028kbru?svg=true" alt="appveyor" />
   </a>
-  <a href="https://stackshare.io/hirsch88/express-typescript-boilerplate">
+  <a href="https://stackshare.io/codeninja0x01/my-stack">
     <img src="https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat" alt="StackShare" />
   </a>
 </p>
