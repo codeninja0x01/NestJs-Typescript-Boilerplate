@@ -5,7 +5,6 @@ import {
 import { Product } from '../product/product.model';
 
 @Entity()
-@CreateDateColumn()
 export class Cart {
     @PrimaryGeneratedColumn('increment')
     public id: number;
@@ -22,7 +21,7 @@ export class Cart {
     @Column({default: true, name: 'buy_now'})
     public buyNow: boolean;
 
-    @CreateDateColumn({name: 'created_on'})
+    @CreateDateColumn({name: 'created_on', nullable: true})
     public createdAt: Date;
 
     @Column({name: 'product_id'})

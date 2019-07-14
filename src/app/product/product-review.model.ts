@@ -16,7 +16,7 @@ export class Review {
     @Column()
     public rating: number;
 
-    @CreateDateColumn({name: 'created_on'})
+    @CreateDateColumn({name: 'created_on', nullable: true})
     public createdAt: Date;
 
     @Column({name: 'product_id'})

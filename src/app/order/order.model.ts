@@ -8,7 +8,6 @@ import { User } from '../user/user.model';
 import { OrderDetail } from './order-detail.model';
 
 @Entity({name: 'orders'})
-@CreateDateColumn()
 export class Order {
     @PrimaryGeneratedColumn('increment')
     public id: number;
@@ -40,7 +39,7 @@ export class Order {
     @Column({name: 'shipping_id'})
     public shippingId: number;
 
-    @CreateDateColumn({name: 'created_on'})
+    @CreateDateColumn({name: 'created_on', nullable: true})
     public createdAt: Date;
 
     @ManyToOne(() => User, user => user.orders)
