@@ -46,7 +46,7 @@
 - [Project Structure](#-project-structure)
 - [Docker](#-docker)
 - [Further Documentations](#-further-documentation)
-- [Turing Advanced Requirements] (#-advanced-requirements)
+- [Turing Advanced Requirements](#-advanced-requirements)
 ## ❯ Getting Started
 
 ### Step 1: Set up the Development Environment
@@ -262,4 +262,11 @@ DB_PORT=3306
 | [GraphQL Documentation](http://graphql.org/graphql-js/) | A query language for your API. |
 
 ## ❯ Turing Advanced Requirements
-#### 1. The current system can support 100,000 daily active users. How do you design a new system to support 1,000,000 daily active users?
+### The current system can support 100,000 daily active users. How do you design a new system to support 1,000,000 daily active users?
+#### 1. The first solution could be Vertical Scaling i.e. using powerful computers with lots of RAM, CPUs etc. to handle the user load and work on the data. But again, there would be an upper limit to the performance you achieve using the hardware modifications.
+
+#### 2. Another solution is to use the commodity hardware and perform Horizontal scaling i.e. work with Distributed Systems.
+
+### A half of the daily active users comes from United States. How do you design a new system to handle this case?
+
+#### 1. the system should have it’s servers deployed across the US regions. Closer the server is lesser the latency.
