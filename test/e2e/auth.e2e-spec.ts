@@ -10,6 +10,7 @@ import { SigninDto } from '../../src/app/auth/dto/signin-auth.dto';
 import { SignupDto } from '../../src/app/auth/dto/signup-auth.dto';
 import { JwtStrategy } from '../../src/app/auth/jwt.strategy';
 import { ConfigModule } from '../../src/app/config/config.module';
+import { HelperModule } from '../../src/app/helper/helper.module';
 import { User } from '../../src/app/user/user.model';
 import { UserModule } from '../../src/app/user/user.module';
 
@@ -54,6 +55,7 @@ describe('Auth Controller (e2e)', () => {
                 ConfigModule,
                 AuthModule,
                 UserModule,
+                HelperModule,
             ],
             providers: [JwtStrategy],
         })
