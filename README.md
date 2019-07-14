@@ -46,7 +46,7 @@
 - [Project Structure](#-project-structure)
 - [Docker](#-docker)
 - [Further Documentations](#-further-documentation)
-- [Turing Advanced Requirements](#-advanced-requirements)
+- [Turing Advanced Requirements](#-turing-advanced-requirements)
 ## ❯ Getting Started
 
 ### Step 1: Set up the Development Environment
