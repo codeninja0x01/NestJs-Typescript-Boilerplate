@@ -3,7 +3,7 @@
 
 
 <p align="center">
-  <b>A delightful way to build a Node.js RESTful API  And Graphql Services with beautiful code written in TypeScript.</b></br>
+  <b>Turing Backend Challenge written in TypeScript.</b></br>
 </p>
 
 <br />
