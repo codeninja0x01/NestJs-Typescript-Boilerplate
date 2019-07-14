@@ -17,12 +17,12 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
 import { ValidationPipe } from './pipes/validation.pipe';
 
 let APP_CONFIG;
+let port = process.env.PORT;
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, isProdMode ? { logger: false } : undefined);
   APP_CONFIG = app.get('ConfigService');
 
-  let port = process.env.PORT;
   if (port === null || port === '') {
     port = APP_CONFIG.get('APP_PORT');
   }
@@ -41,7 +41,7 @@ const bootstrap = async () => {
     };
 
     swaggerFile.schemes = [`${APP_CONFIG.get('APP_SCHEMA')}`];
-    swaggerFile.host = `${APP_CONFIG.get('APP_HOST')}:${port}`;
+    swaggerFile.host = `${APP_CONFIG.get('APP_HOST')}`;
     swaggerFile.basePath = `${APP_CONFIG.get('APP_ROUTE_PREFIX')}`;
 
     app.use(
@@ -74,5 +74,5 @@ const bootstrap = async () => {
 };
 
 bootstrap().then(_ => {
-  Logger.log(`Server running on ${APP_CONFIG.get('APP_HOST')}:${APP_CONFIG.get('APP_PORT')}`, 'Bootstrap');
+  Logger.log(`Server running on ${APP_CONFIG.get('APP_HOST')}:${port}`, 'Bootstrap');
 });
