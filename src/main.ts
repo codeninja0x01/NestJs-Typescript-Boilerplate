@@ -41,7 +41,7 @@ const bootstrap = async () => {
     };
 
     swaggerFile.schemes = [`${APP_CONFIG.get('APP_SCHEMA')}`];
-    swaggerFile.host =  `${APP_CONFIG.get('APP_HOST')}`;
+    swaggerFile.host =  isProdMode ? `${APP_CONFIG.get('APP_HOST')}` : `${APP_CONFIG.get('APP_HOST')}:${port}`;
     swaggerFile.basePath = `${APP_CONFIG.get('APP_ROUTE_PREFIX')}`;
 
     app.use(

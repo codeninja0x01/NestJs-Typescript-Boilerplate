@@ -84,8 +84,6 @@ if (process.env.GRAPHQL_ENABLED === 'true') {
         typePaths: [configService.get('GRAPHQL_SCHEMA')],
         context: ({ req }) => ({ req }),
         debug: false,
-        introspection: configService.get('GRAPHQL_EDITOR') === 'true',
-        playground: configService.get('GRAPHQL_EDITOR') === 'true',
         formatError: (error: GraphQLError) => {
           Logger.error(
             JSON.stringify({
