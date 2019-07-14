@@ -70,7 +70,7 @@ const bootstrap = async () => {
   app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(3000);
+  await app.listen(port);
 };
 
 bootstrap().then(_ => {
