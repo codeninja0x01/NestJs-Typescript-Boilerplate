@@ -41,7 +41,7 @@ const bootstrap = async () => {
     };
 
     swaggerFile.schemes = [`${APP_CONFIG.get('APP_SCHEMA')}`];
-    swaggerFile.host = `${APP_CONFIG.get('APP_HOST')}`;
+    swaggerFile.host =  isProdMode ? `${APP_CONFIG.get('APP_HOST')}` : `${APP_CONFIG.get('APP_HOST')}:${port}`;
     swaggerFile.basePath = `${APP_CONFIG.get('APP_ROUTE_PREFIX')}`;
 
     app.use(
@@ -70,7 +70,7 @@ const bootstrap = async () => {
   app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(port);
+  await app.listen(3000);
 };
 
 bootstrap().then(_ => {
