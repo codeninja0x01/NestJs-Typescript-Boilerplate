@@ -4,6 +4,22 @@
 
 <p align="center">
   <b>Turing Backend Challenge written in TypeScript.</b></br>
+
+  <p align="center">
+  <a href="https://david-dm.org/w3tecch/express-typescript-boilerplate">
+    <img src="https://david-dm.org/w3tecch/express-typescript-boilerplate/status.svg?style=flat" alt="dependency" />
+  </a>
+  <a href="https://travis-ci.org/codeninja0x01/Turing-ecommerce">
+    <img src="https://travis-ci.org/codeninja0x01/Turing-ecommerce.svg?branch=master" alt="travis" />
+  </a>
+  <a href="https://ci.appveyor.com/project/dweber019/express-typescript-boilerplate/branch/master">
+    <img src="https://ci.appveyor.com/api/projects/status/f8e7jdm8v58hcwpq/branch/master?svg=true&passingText=Windows%20passing&pendingText=Windows%20pending&failingText=Windows%20failing" alt="appveyor" />
+  </a>
+  <a href="https://stackshare.io/hirsch88/express-typescript-boilerplate">
+    <img src="https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat" alt="StackShare" />
+  </a>
+</p>
+
 </p>
 
 <br />
@@ -30,7 +46,7 @@
 - [Project Structure](#-project-structure)
 - [Docker](#-docker)
 - [Further Documentations](#-further-documentation)
-
+- [Turing Advanced Requirements] (#-advanced-requirements)
 ## ❯ Getting Started
 
 ### Step 1: Set up the Development Environment
@@ -244,3 +260,6 @@ DB_PORT=3306
 | [supertest](https://github.com/visionmedia/supertest) | Super-agent driven library for testing node.js HTTP servers using a fluent API |
 | [swagger Documentation](http://swagger.io/) | API Tool to describe and document your api. |
 | [GraphQL Documentation](http://graphql.org/graphql-js/) | A query language for your API. |
+
+## ❯ Turing Advanced Requirements
+#### 1. The current system can support 100,000 daily active users. How do you design a new system to support 1,000,000 daily active users?
