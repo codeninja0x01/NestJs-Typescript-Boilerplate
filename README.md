@@ -1,10 +1,8 @@
 
-<h1 align="center">Turing E-commerce</h1>
+<h1 align="center">NestJs Typescript Boilerplate</h1>
 
 
 <p align="center">
-  <b>Turing Backend Challenge written in TypeScript.</b></br>
-
   <p align="center">
   <a href="https://david-dm.org/codeninja0x01/Turing-ecommerce">
     <img src="https://david-dm.org/codeninja0x01/Turing-ecommerce/status.svg?style=flat" alt="dependency" />
