@@ -65,7 +65,7 @@
     "cache-manager": "^2.10.0",
     "cache-manager-redis-store": "^1.5.0",
     "chalk": "^2.4.2",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.9.1",
     "compression": "^1.7.4",
     "dotenv": "^8.0.0",
