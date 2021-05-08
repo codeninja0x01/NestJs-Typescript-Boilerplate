@@ -85,6 +85,6 @@
     "rxjs": "^6.5.2",
     "stripe": "^7.4.0",
     "swagger-ui-express": "^4.0.7",
-    "typeorm": "^0.2.18"
+    "typeorm": "^0.2.25"
   }
 }
